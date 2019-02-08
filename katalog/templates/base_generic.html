@@ -1,0 +1,182 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Lamp Admin - HTML5">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block title %}<title>Energetsko Knjigovodstvo</title>{% endblock title %}
+
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+    {% include 'base_generic/css.html' %}
+    {% include 'base_generic/bootstrap_defaults.html' %}
+
+    {% block head_css %}{% endblock %}
+
+</head>
+
+<body>
+<!-- Left Panel -->
+{% block sidebar %}
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+
+        <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand"><img src="{% static 'images/logo.png' %}" alt="Logo"></a>
+            <a class="navbar-brand hidden"><img src="{% static 'images/logo2.png' %}" alt="Logo"></a>
+        </div>
+
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="{% url 'index' %}"><i class="menu-icon fa fa-laptop"></i>Kontrolna Ploča</a>
+                </li>
+
+                <h3 class="menu-title">Administracija</h3><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-file-text"></i>Računi</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-table"></i><a href="{% url 'racuni' %}">Tablica</a></li>
+                        <li><i class="fa fa-bar-chart-o"></i><a href="{% url 'racuni-charts' %}">Grafovi</a></li>
+                        <!--<li><i class="fa fa-bars"></i><a href="#">Forme</a></li>-->
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-copy"></i>Instance</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-table"></i><a href="{% url 'instance' %}">Tablica</a></li>
+                        <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{% url 'instance-charts' %}">Grafovi</a></li>
+                        <!--<li><i class="menu-icon fa fa-bars"></i><a href="#">Forme</a></li>-->
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-sort-amount-asc"></i>Tarife</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-table"></i><a href="{% url 'tarife' %}">Tablica</a></li>
+                        <li><i class="fa fa-bar-chart-o"></i><a href="{% url 'tarife-charts' %}">Grafovi</a></li>
+                        <!--<li><i class="fa fa-bars"></i><a href="#">Forme</a></li>-->
+                    </ul>
+                </li>
+
+                <h3 class="menu-title">Objekti</h3><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bolt"></i>Omm</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-table"></i><a href="{% url 'omma' %}">Tablica</a></li>
+                        <!--<li><i class="menu-icon fa fa-bars"></i><a href="#">Forme</a></li>-->
+                        <li><i class="menu-icon fa fa-tachometer"></i><a href="{% url 'scada' %}">SCADA</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-lightbulb-o"></i>Svjetiljke</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-table"></i><a href="{% url 'svjetiljke' %}">Tablica</a></li>
+                        <li><i class="menu-icon fa fa-map-marker"></i><a href="{% url 'gmap' %}">Mapa</a></li>
+                    </ul>
+                </li>
+
+                <h3 class="menu-title">Dodaci</h3><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-group"></i>Kontakti</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-sign-in"></i><a href="{% url 'partneri' %}">Pregled</a></li>
+                        <!--<li><i class="menu-icon fa fa-sign-in"></i><a href="#">Unos</a></li>-->
+                    </ul>
+                </li>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside><!-- /#left-panel -->
+{% endblock sidebar %}
+<!-- Left Panel -->
+
+<!-- Right Panel -->
+<div id="right-panel" class="right-panel">
+    <!-- Header-->
+    <header id="header" class="header">
+        <div class="header-menu">
+            <div class="col-sm-7">
+                <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                <div class="header-left">
+                    <button class="search-trigger"><i class="fa fa-search"></i></button>
+                    <div class="form-inline">
+                        <form class="search-form">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Pretraga ..." aria-label="Search">
+                            <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                        </form>
+                    </div>
+
+                    <div class="dropdown for-notification">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-bell"></i>
+                            <span class="count bg-danger">2</span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="notification">
+                            <p class="red"><strong>Imate 2 predefinirana alarma za slanje!</strong></p>
+                            <a class="dropdown-item media bg-flat-color-4" href="#">
+                                <i class="fa fa-warning"></i>
+                                <p>Server #1 preopterećen.</p>
+                            </a>
+                            <a class="dropdown-item media bg-flat-color-3" href="#">
+                                <i class="fa fa-info"></i>
+                                <p>Server #2 preopterećen.</p>
+                            </a>
+                            <a class="dropdown-item media bg-flat-color-5" href="{% url 'send-mail' %}">
+                                <i class="fa fa-check"></i>
+                                <p>Pošalji alarme na mailing listu</p>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-5">
+                <div class="user-area dropdown float-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="user-avatar rounded-circle" src="{% static 'images/admin.jpg' %}" alt="User Avatar">
+                    </a>
+
+                    <div class="user-menu dropdown-menu">
+                        <a class="nav-link" href="#"><i class="fa fa- user"></i>Moj Profil</a>
+
+                        <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifikacije<span class="count">13</span></a>
+
+                        <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-power -off"></i>Odlogiraj Se</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </header><!-- /header -->
+    <!-- Header-->
+
+    {% block content %}{% endblock %}
+
+</div><!-- /#right-panel -->
+<!-- Right Panel -->
+
+{% include 'base_generic/js.html' %}
+
+{% block body_js %}{% endblock %}
+
+<script>
+        $(document).ready(function(){
+          {% block jquery %}{% endblock %}
+        })
+    </script>
+
+</body>
+
+</html>

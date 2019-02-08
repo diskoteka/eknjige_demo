@@ -1,0 +1,82 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Sveti Ivan Zelina</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li><a href="#">Kontrolna Ploča</a></li>
+                    <li><a href="#">Svjetiljke</a></li>
+                    <li class="active">Detalji</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--details-->
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>ID svjetiljke: {{ svjetiljka.id }}</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <p><strong>OIB:</strong> {{ svjetiljka.oib }}</p>
+                        <p><strong>Stup:</strong> {{ svjetiljka.stup }} m</p>
+                        <p><strong>Tip svjetiljke:</strong> {{ svjetiljka.tip_svjetiljke }}</p>
+                        <p><strong>Tip svjetlosti:</strong> {{ svjetiljka.tip_svjetlosti }}</p>
+                        <p><strong>Snaga:</strong> {{ svjetiljka.snaga }} W</p>
+                        <p><strong>Klasa površine:</strong> {{ svjetiljka.klasa_povrsine }}</p>
+                        <p><strong>X koordinata:</strong> {{ svjetiljka.x_koordinata }}</p>
+                        <p><strong>Y koordinata:</strong> {{ svjetiljka.y_koordinata }}</p>
+                        <p>Slika svjetiljke:</p>
+                        <p><img src="{{ svjetiljka.slika.url }}" /></p>
+
+                        <form action="{% url 'svjetiljka_update' svjetiljka.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-magic"></i>&nbsp; Uredi svjetiljku</button>
+                        </form>
+                        <br>
+                        <form action="{% url 'svjetiljka_delete' svjetiljka.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-danger"><i class="fa fa-lightbulb-o"></i>&nbsp; Izbriši svjetiljku</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <div class="card">
+                    <div class="card-header">
+                        Dodaj sliku svjetiljke
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'upload_pic' svjetiljka.id %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <p>
+                                <input id="id_image" type="file" class="" name="image">
+                            </p>
+                            <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-picture-o"></i>&nbsp; Dodaj sliku</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <a href="{% url 'svjetiljke' %}">Idi na tablicu</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

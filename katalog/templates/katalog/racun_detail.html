@@ -1,0 +1,61 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Sveti Ivan Zelina</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li><a href="#">Kontrolna Ploča</a></li>
+                    <li><a href="#">Računi</a></li>
+                    <li class="active">Detalji</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--details-->
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>ID računa: {{ racun.id }}</h4>
+                </div>
+
+                <div class="card-body">
+                    <p><strong>Broj:</strong> {{ racun.broj }}</p>
+                    <p><strong>Datum:</strong> {{ racun.datum }}</p>
+                    <p><strong>Količina:</strong> {{ racun.kolicina }}</p>
+                    <p><strong>Tarifa:</strong> {{ racun.tarifa.naziv }}  ({{ racun.tarifa.mjesec }})</p>
+                    <p><strong>UKUPAN IZNOS OPSKRBE:</strong> {{ racun.suma_opskrbe }} kn</p>
+
+                    <form action="{% url 'racun_update' racun.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-magic"></i>&nbsp; Uredi račun</button>
+                    </form>
+                    <br>
+                    <form action="{% url 'racun_delete' racun.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger"><i class="fa fa-ban"></i>&nbsp; Izbriši račun</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <a href="{% url 'racun-renew-manager' racun.id %}">Renew</a>
+        <br>
+        <a href="{% url 'racuni' %}">Idi na tablicu</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Sveti Ivan Zelina</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li><a href="#">Kontrolna Ploča</a></li>
+                    <li><a href="#">Omm</a></li>
+                    <li class="active">Detalji</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--details-->
+<div class="content mt-3">
+    <div class="col-md-4">
+        <div class="animated fadeIn">
+            <div class="card">
+                <div class="card-header">
+                    <h4>ID omm: {{ omm.id }}</h4>
+                </div>
+
+                <div class="card-body">
+                    <p><strong>Adresa OMM:</strong> {{ omm.adresa }}</p>
+                    <p><strong>Brojilo:</strong> {{ omm.brojilo }}</p>
+                    <p><strong>Trafostanica:</strong> {{ omm.trafo }}</p>
+
+                    <form action="{% url 'omm_update' omm.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-magic"></i>&nbsp; Uredi Omm</button>
+                    </form>
+                    <br>
+                    <form action="{% url 'omm_delete' omm.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger"><i class="fa fa-ban"></i>&nbsp; Izbriši Omm</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="{% url 'omma' %}">Idi na tablicu</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends "base_generic.html" %}
+
+{% block head_css %}
+<!--datatable css-->
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/lib/datatable/dataTables.bootstrap.min.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Sveti Ivan Zelina</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li><a href="#">Kontrolna Ploča</a></li>
+                    <li><a href="#">Svjetiljke</a></li>
+                    <li class="active">Tablica</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--table-->
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row">
+
+            <div class="col-lg-10">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Tablica svjetiljki</strong>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>OIB</th>
+                                <th>Stup</th>
+                                <th>Tip svjetiljke</th>
+                                <th>Tip svjetlosti</th>
+                                <th>Snaga</th>
+                                <th>Klasa povrsine</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for svjetiljka in svjetiljka_list %}
+                            <tr>
+                                <td><a href="{{ svjetiljka.get_absolute_url }}">{{ svjetiljka.oib }}</a></td>
+                                <td>{{ svjetiljka.stup }}</td>
+                                <td>{{ svjetiljka.tip_svjetiljke }}</td>
+                                <td>{{ svjetiljka.tip_svjetlosti }}</td>
+                                <td>{{ svjetiljka.snaga }}</td>
+                                <td>{{ svjetiljka.klasa_povrsine }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Kontrole svjetiljki</strong>
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'svjetiljka_create' %}">
+                            <button type="submit" class="btn btn-outline-success"><i class="fa fa-lightbulb-o"></i>&nbsp; Dodaj novu svjetiljku</button>
+                        </form>
+
+                        <form action="{% url 'svj_imp' %}">
+                            <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-sign-in"></i>&nbsp; Import iz tablice</button>
+                        </form>
+
+                        <form action="{% url 'svj_exp' %}">
+                            <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-sign-out"></i>&nbsp; Eksport u .csv</button>
+                        </form>
+
+                        <form action="{% url 'svj_del' %}">
+                            <button type="submit" class="btn btn-outline-danger"><i class="fa fa-ban"></i>&nbsp; Obriši sve svjetiljke</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block body_js %}
+<!--datatable js-->
+{% load static %}
+<script src="{% static 'js/lib/data-table/datatables.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/buttons.bootstrap.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/jszip.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/pdfmake.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/vfs_fonts.js' %}"></script>
+<script src="{% static 'js/lib/data-table/buttons.html5.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/buttons.print.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/datatables-init.js' %}"></script>
+{% endblock %}

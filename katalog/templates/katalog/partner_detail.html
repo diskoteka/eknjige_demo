@@ -1,0 +1,59 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Sveti Ivan Zelina</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li><a href="#">Kontrolna Ploča</a></li>
+                    <li><a href="#">Kontakti</a></li>
+                    <li class="active">Detalji</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--details-->
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>ID kontakta: {{ partner.id }}</h4>
+                </div>
+
+                <div class="card-body">
+                    <p><strong>OIB:</strong> {{ partner.oib }}</p>
+                    <p><strong>Adresa:</strong> {{ partner.adresa }}</p>
+                    <p><strong>Tvrtka:</strong> {{ partner.tvrtka }}</p>
+                    <p><strong>Uloga:</strong> {{ partner.naziv }}</p>
+                    <p><strong>e-mail:</strong> {{ partner.email }}</p>
+
+                    <form action="{% url 'partner_update' partner.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-magic"></i>&nbsp; Uredi kontakt</button>
+                    </form>
+                    <br>
+                    <form action="{% url 'partner_delete' partner.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger"><i class="fa fa-ban"></i>&nbsp; Izbriši kontakt</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <a href="{% url 'partneri' %}">Idi na tablicu</a>
+    </div>
+</div>
+
+{% endblock %}

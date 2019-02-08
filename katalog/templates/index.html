@@ -1,0 +1,248 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Sveti Ivan Zelina</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">Kontrolna Ploča</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--widgets-->
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="ti-file text-success border-success"></i></div>
+                        <div class="stat-content dib">
+                            <div class="stat-text">Računa</div>
+                            <div class="stat-digit">{{ br_racuna }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="ti-files text-primary border-primary"></i></div>
+                        <div class="stat-content dib">
+                            <div class="stat-text">Instanci</div>
+                            <div class="stat-digit">{{ br_instanci }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="ti-bolt text-warning border-warning"></i></div>
+                        <div class="stat-content dib">
+                            <div class="stat-text">Omm-a</div>
+                            <div class="stat-digit">{{ br_omma }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="ti-light-bulb text-danger border-danger"></i></div>
+                        <div class="stat-content dib">
+                            <div class="stat-text">Svjetiljki</div>
+                            <div class="stat-digit">{{ br_svjetiljki }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-four">
+                        <div class="stat-icon dib">
+                            <i class="ti-user text-muted"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-heading">Korisnici</div>
+                                <div class="stat-text">Ukupno: {{ br_korisnika }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-four">
+                        <div class="stat-icon dib">
+                            <i class="ti-server text-muted"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-heading">Baza Podataka</div>
+                                <div class="stat-text">Unosa: {{ suma_svih }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-four">
+                        <div class="stat-icon dib">
+                            <i class="ti-stats-up text-muted"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-heading">Trošak računa</div>
+                                <div class="stat-text">{{ sum_r }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-four">
+                        <div class="stat-icon dib">
+                            <i class="ti-pulse text-muted"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-heading">Trošak instanci</div>
+                                <div class="stat-text">{{ sum_i }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--gmap-->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Sveti Ivan Zelina</h4>
+                </div>
+                <div class="gmap_unix card-body">
+                    <div class="map" id="basic-map"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--graph widgets-->
+        <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-flat-color-1">
+                <div class="card-body pb-0">
+                    <h4 class="mb-0">
+                        <span class="count">{{ br_racuna }}</span>
+                    </h4>
+                    <p class="text-light">Mjesečni računi</p>
+                    <div class="chart-wrapper px-0" style="height:70px;" height="70">
+                        <canvas id="widgetChart1"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-flat-color-2">
+                <div class="card-body pb-0">
+                    <h4 class="mb-0">
+                        <span class="count">{{ br_instanci }}</span>
+                    </h4>
+                    <p class="text-light">Mjesečne instance</p>
+                    <div class="chart-wrapper px-0" style="height:70px;" height="70">
+                        <canvas id="widgetChart2"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-flat-color-3">
+                <div class="card-body pb-0">
+                    <h4 class="mb-0">
+                        <span class="count">{{ br_tarifa }}</span>
+                    </h4>
+                    <p class="text-light">Energetska tarifa</p>
+                </div>
+                <div class="chart-wrapper px-0" style="height:70px;" height="70">
+                    <canvas id="widgetChart3"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-flat-color-4">
+                <div class="card-body pb-0">
+                    <h4 class="mb-0">
+                        <span class="count">{{ br_svjetiljki }}</span>
+                    </h4>
+                    <p class="text-light">Svjetiljke po OMM</p>
+                    <div class="chart-wrapper px-3" style="height:70px;" height="70">
+                        <canvas id="widgetChart4"></canvas>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+                <form action="{% url 'racun_create' %}">
+                    <button type="submit" class="btn btn-outline-success btn-lg btn-block"><i class="fa fa-file-text"></i>&nbsp; Novi račun</button>
+                </form>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+            <form action="{% url 'instanca_create' %}">
+                <button type="submit" class="btn btn-outline-warning btn-lg btn-block"><i class="fa fa-copy"></i>&nbsp; Nova instanca</button>
+            </form>
+        </div>
+
+    </div>
+</div><!-- .content -->
+{% endblock %}
+
+{% block body_js %}
+<!--widgets; gmap-->
+{% load static %}
+<script src="{% static 'js/lib/chart-js/Chart.bundle.js' %}"></script>
+<script src="{% static 'js/widgets.js' %}"></script>
+<script src="{% static 'js/lib/gmap/gmaps.js' %}"></script>
+<script src="{% static 'js/lib/gmap/gmap.init.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2jlT6C_to6X1mMvR9yRWeRvpIgTXgddM"></script>
+{% endblock %}

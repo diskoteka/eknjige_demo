@@ -1,0 +1,61 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Sveti Ivan Zelina</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li><a href="#">Kontrolna Ploča</a></li>
+                    <li><a href="#">Tarife</a></li>
+                    <li class="active">Detalji</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--details-->
+<div class="content mt-3">
+    <div class="col-md-4">
+        <div class="animated fadeIn">
+            <div class="card">
+                <div class="card-header">
+                    <h4>ID tarife: {{ tarifa.id }}</h4>
+                </div>
+
+                <div class="card-body">
+                    <p><strong>Naziv:</strong> {{ tarifa.naziv }}</p>
+                    <p><strong>Mjesec:</strong> {{ tarifa.mjesec }}</p>
+                    <p><strong>RJT:</strong> {{ tarifa.rjt_rvt }}</p>
+                    <p><strong>OIE:</strong> {{ tarifa.oie }}</p>
+                    <p><strong>TRNP:</strong> {{ tarifa.trnp }}</p>
+                    <p><strong>RVT R1:</strong> {{ tarifa.rvt_r1 }}</p>
+                    <p><strong>Naknada:</strong> {{ tarifa.naknada }}</p>
+
+                    <form action="{% url 'tarifa_update' tarifa.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-magic"></i>&nbsp; Uredi tarifu</button>
+                    </form>
+                    <br>
+                    <form action="{% url 'tarifa_delete' tarifa.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger"><i class="fa fa-ban"></i>&nbsp; Izbriši tarifu</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="{% url 'tarife' %}">Idi na tablicu</a>
+</div>
+
+{% endblock %}

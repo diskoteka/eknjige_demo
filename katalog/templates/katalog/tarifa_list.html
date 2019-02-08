@@ -1,0 +1,96 @@
+{% extends "base_generic.html" %}
+
+{% block head_css %}
+<!--datatable css-->
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/lib/datatable/dataTables.bootstrap.min.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Sveti Ivan Zelina</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li><a href="#">Kontrolna Ploča</a></li>
+                    <li><a href="#">Tarife</a></li>
+                    <li class="active">Tablica</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--table-->
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row">
+
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Tablica Tarifa</strong>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Naziv</th>
+                                <th>Datum</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for tarifa in tarifa_list %}
+                            <tr>
+                                <td><a href="{{ tarifa.get_absolute_url }}">{{ tarifa.naziv }}</a></td>
+                                <td>{{ tarifa.mjesec }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Kontrole tarifa</strong>
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'tarifa_create' %}">
+                            <button type="submit" class="btn btn-outline-success"><i class="fa fa-sort-amount-asc"></i>&nbsp; Dodaj novu tarifu</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block body_js %}
+<!--datatable js-->
+{% load static %}
+<script src="{% static 'js/lib/data-table/datatables.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/buttons.bootstrap.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/jszip.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/pdfmake.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/vfs_fonts.js' %}"></script>
+<script src="{% static 'js/lib/data-table/buttons.html5.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/buttons.print.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/datatables-init.js' %}"></script>
+{% endblock %}
