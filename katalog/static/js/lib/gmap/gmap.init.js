@@ -5,8 +5,10 @@ $(document).ready(function(){
 	infoWindow = new google.maps.InfoWindow({});
     map = new GMaps({
         el: '#basic-map',
-        lat: 45.959794,
-        lng: 16.243112,
+        lat: 45.961029,
+        lng: 16.241412,
+        mapType: 'satellite',
+        zoom: 18,
         zoomControl : true,
         zoomControlOpt: {
             style : 'SMALL',

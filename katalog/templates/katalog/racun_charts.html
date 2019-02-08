@@ -1,6 +1,18 @@
 {% extends 'base_generic.html' %}
 
-<script>
+{% block content %}
+<div class="container">
+    <div class='row'>
+        <div class='col-sm-12'>
+            <h1>Charts</h1>
+
+            <canvas id="myChart" width="400" height="200"></canvas>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block jquery %}
 var endpoint = '/katalog/racuni/api/chart/data/'
 var defaultData = []
@@ -66,20 +78,4 @@ $.ajax({
         console.log(error_data)
     }
 })
-
-{% endblock %}
-</script>
-
-{% block content %}
-<div class="container">
-    <div class='row'>
-        <div class='col-sm-12'>
-            <h1>Charts</h1>
-
-            <canvas id="myChart" width="400" height="200"></canvas>
-
-        </div>
-    </div>
-</div>
-
 {% endblock %}
