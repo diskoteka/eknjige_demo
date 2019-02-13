@@ -7,7 +7,12 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('omm/scada/', views.scada, name='scada'),
     path('svjetiljke/gmap/', views.gmap, name='gmap'),
-    path('send/', views.email, name='send-mail'),
+]
+
+# email - sms
+urlpatterns += [
+    path('send/mail/', views.email, name='send-mail'),
+    path('send/sms/', views.sms, name='send-sms'),
 ]
 
 # chart views
@@ -43,6 +48,13 @@ urlpatterns += [
     path('svjetiljke/imp/', views.svjetiljka_import, name='svj_imp'),
     path('svjetiljke/del/', views.svj_del, name='svj_del'),
     path('svjetiljke/delall/', views.svj_del_all, name='svj_del_all'),
+]
+
+# predlosci
+urlpatterns += [
+    path('predlosci/racuni/', views.template_racuni, name='predlosci_racuni'),
+    path('predlosci/instance/', views.template_instance, name='predlosci_instance'),
+    path('predlosci/omm/', views.template_omm, name='predlosci_omm'),
 ]
 
 # class based views
@@ -83,6 +95,7 @@ urlpatterns += [
     path('svjetiljka/<int:pk>/delete/', views.SvjetiljkaDelete.as_view(), name='svjetiljka_delete'),
 ]
 
+# pic upload
 urlpatterns += [
     path('svjetiljka/<int:pk>/upload_pic/', views.upload_pic, name='upload_pic'),
 ]

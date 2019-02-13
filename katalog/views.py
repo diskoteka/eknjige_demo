@@ -1,5 +1,6 @@
 import datetime
 import locale
+import xlwt
 
 from django.urls import reverse, reverse_lazy
 
@@ -25,10 +26,98 @@ from .forms import RenewRacunForm, ImageUploadForm
 from django.core.mail import send_mail
 from django.conf import settings
 
+from twilio.rest import Client
+
 
 # views variables
 User = get_user_model()
 locale.setlocale(locale.LC_ALL, '')
+
+
+# send email - sms
+def email(request):
+    subject = 'Dojava alarma'
+    message = 'Server #1 preopterećen; Server #2 preopterećen;'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = ['mario.juricic@rocketmail.com', ]
+
+    send_mail(subject, message, email_from, recipient_list)
+
+    return render(request, 'email.html')
+
+
+def sms(request):
+    client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
+
+    message = client.messages.create(to='+385919799455', from_='+15005550001', body='This message is sent through twilio api using django framework.')
+
+    print(message.ssid)
+
+    return render(request, 'sms.html')
+
+
+# templates
+def template_racuni(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="racuni.xls"'
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('Računi')
+
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['datum', 'broj', 'kolicina', 'tarifa', 'id',]
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    wb.save(response)
+    return response
+
+
+def template_instance(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="instance.xls"'
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('Instance')
+
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['sifra', 'adresa', 'trafo', 'brojilo', 'id',]
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    wb.save(response)
+    return response
+
+
+def template_omm(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="omm.xls"'
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('Omm')
+
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['sifra', 'adresa', 'trafo', 'brojilo', 'id',]
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    wb.save(response)
+    return response
 
 
 # upload pics views
@@ -43,18 +132,6 @@ def upload_pic(request, pk):
             return HttpResponseRedirect(reverse('svjetiljke'))
 
     return HttpResponseForbidden('Niste odabrali sliku svjetiljke!')
-
-
-# mail view
-def email(request):
-    subject = 'Dojava alarma'
-    message = 'Server #1 preopterećen; Server #2 preopterećen;'
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = ['mario.juricic@rocketmail.com', ]
-
-    send_mail(subject, message, email_from, recipient_list)
-
-    return render(request, 'email.html')
 
 
 # renew views
