@@ -1,6 +1,68 @@
 {% extends 'base_generic.html' %}
 
-<script>
+{% block content %}
+<div class="content mt-3">
+    <div class="animated fadeIn">
+            <div class='row'>
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Grafikon 1</h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="barChart" width="400" height="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Grafikon 2</h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="lineChart" width="400" height="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Grafikon 3</h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="pieChart" width="400" height="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Grafikon 4</h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="polarChart" width="400" height="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Grafikon 5</h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="doughnutChart" width="400" height="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block jquery %}
 var endpoint = '/katalog/instance/api/chart/data/'
 var defaultData = [];
@@ -277,71 +339,4 @@ $.ajax({
         })
     }
 })
-
-
-{% endblock %}
-</script>
-
-{% block content %}
-<div class="content mt-3">
-    <div class="animated fadeIn">
-            <div class='row'>
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Stupčasti graf</h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="barChart" width="400" height="200"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Linijski graf</h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="lineChart" width="400" height="200"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Pita graf</h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="pieChart" width="400" height="200"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Polar graf</h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="polarChart" width="400" height="200"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Krafna graf</h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="doughnutChart" width="400" height="200"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
-</div>
-
 {% endblock %}

@@ -12,6 +12,7 @@ class RenewRacunForm(forms.ModelForm):
     for racun in Racun.objects.all():
         sum_kolicina += racun.kolicina
 
+    # pripazit na dijeljenje s nulom!!!
     prosjek = sum_kolicina / Racun.objects.count()
 
     def clean_kolicina(self):
@@ -28,8 +29,8 @@ class RenewRacunForm(forms.ModelForm):
     class Meta:
         model = Racun
         fields = ['kolicina', ]
-        labels = {'kolicina': 'kolicina', }
-        help_texts = {'kolicina': 'unesi novu kolicinu potroška', }
+        labels = {'kolicina': 'Količina', }
+        help_texts = {'kolicina': 'unesi novu količinu', }
 
 
 class ImageUploadForm(forms.Form):

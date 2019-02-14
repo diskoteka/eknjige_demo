@@ -30,10 +30,24 @@
                 </div>
             </div>
         </div>
-
-        <a href="{% url 'racun-renew-manager' racun.id %}">Renew</a>
-        <br>
-        <a href="{% url 'racuni' %}">Idi na tablicu</a>
+        <div class="col-md-3">
+            <div class="buttons">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Kontrole Računa</strong>
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'racun-renew-manager' racun.id %}">
+                            <button type="submit" class="btn btn-outline-success btn-block"><i class="fa fa-file-text"></i>&nbsp;Obnovi</button>
+                        </form>
+    
+                        <form action="{% url 'racuni' %}">
+                            <button type="submit" class="btn btn-outline-secondary btn-block"><i class="fa fa-sign-in"></i>&nbsp;Idi na tablicu</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

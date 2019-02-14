@@ -27,6 +27,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 from twilio.rest import Client
+from sendsms import api
 
 
 # views variables
@@ -49,11 +50,16 @@ def email(request):
 def sms(request):
     client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
 
-    message = client.messages.create(to='+385919799455', from_='+15005550001', body='This message is sent through twilio api using django framework.')
+    message = client.messages.create(to='+385919799455', from_='+15005550006', body='This message is sent through twilio api using django framework.')
 
-    print(message.ssid)
+    print(message.sid)
 
     return render(request, 'sms.html')
+
+# def sms(request):
+#     api.send_sms(body='dojava alarma', from_phone='+385919799455', to=['+385919799455'])
+
+#     return render(request, 'sms.html')
 
 
 # templates
