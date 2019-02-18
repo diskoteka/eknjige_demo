@@ -19,7 +19,7 @@
                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th>Potrošak</th>
+                            <th>Potrošak/Količina</th>
                             <th>Mrežarina</th>
                             <th>Datum Od</th>
                             <th>Datum Do</th>
@@ -29,7 +29,7 @@
                         <tbody>
                         {% for instanca in instanca_list %}
                         <tr>
-                            <td><a href="{{ instanca.get_absolute_url }}">{{ instanca.potrosak }}</a></td>
+                            <td><a href="{{ instanca.get_absolute_url }}">{{ instanca.potrosak }} kW</a></td>
                             <td>{{ instanca.mrezarina }}</td>
                             <td>{{ instanca.datum_od }}</td>
                             <td>{{ instanca.datum_do }}</td>

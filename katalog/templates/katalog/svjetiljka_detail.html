@@ -1,6 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+<!-- povezati svjetiljku i omm, tj broj TS -->
 <!--details-->
 <div class="content mt-3">
     <div class="animated fadeIn">
@@ -13,10 +14,10 @@
 
                     <div class="card-body">
                         <p><strong>OIB:</strong> {{ svjetiljka.oib }}</p>
-                        <p><strong>Stup:</strong> {{ svjetiljka.stup }} m</p>
+                        <p><strong>Visina stupa:</strong> {{ svjetiljka.stup }} m</p>
                         <p><strong>Tip svjetiljke:</strong> {{ svjetiljka.tip_svjetiljke }}</p>
                         <p><strong>Tip svjetlosti:</strong> {{ svjetiljka.tip_svjetlosti }}</p>
-                        <p><strong>Snaga:</strong> {{ svjetiljka.snaga }} W</p>
+                        <p><strong>Nazivna snaga izvora svjetlosti:</strong> {{ svjetiljka.snaga }} W</p>
                         <p><strong>Klasa površine:</strong> {{ svjetiljka.klasa_povrsine }}</p>
                         <p><strong>X koordinata:</strong> {{ svjetiljka.x_koordinata }}</p>
                         <p><strong>Y koordinata:</strong> {{ svjetiljka.y_koordinata }}</p>

@@ -19,7 +19,7 @@ from rest_framework.response import Response
 
 from tablib import Dataset
 
-from .models import Omm, Racun, Instanca, Tarifa, Partner, Svjetiljka
+from .models import Omm, Racun, Instanca, Tarifa, Partner, Svjetiljka, Korisnik
 from .resources import SvjetiljkaResource, OmmResource, RacunResource, InstancaResource
 from .forms import RenewRacunForm, ImageUploadForm
 
@@ -50,16 +50,11 @@ def email(request):
 def sms(request):
     client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
 
-    message = client.messages.create(to='+385919799455', from_='+15005550006', body='This message is sent through twilio api using django framework.')
+    message = client.messages.create(to='+385919799455', from_='+385951008218', body='Dojava alarma: Server #1 preopterećen; Server #2 preopterećen;')
 
     print(message.sid)
 
     return render(request, 'sms.html')
-
-# def sms(request):
-#     api.send_sms(body='dojava alarma', from_phone='+385919799455', to=['+385919799455'])
-
-#     return render(request, 'sms.html')
 
 
 # templates

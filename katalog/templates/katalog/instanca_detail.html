@@ -1,6 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+<!-- dodati tarifni model -->
 <!--details-->
 <div class="content mt-3">
     <div class="animated fadeIn">
@@ -17,7 +18,7 @@
                     <p><strong>Datum od:</strong> {{ instanca.datum_od }}</p>
                     <p><strong>Datum do:</strong> {{ instanca.datum_do }}</p>
                     <p><strong>Konstanta:</strong> {{ instanca.konstanta }}</p>
-                    <p><strong>Potrošak:</strong> {{ instanca.potrosak }}</p>
+                    <p><strong>Potrošak:</strong> {{ instanca.potrosak }} kW</p>
                     <p><strong>Naknada:</strong> {{ instanca.mrezarina }}</p>
                     <p><strong>UKUPAN IZNOS OPSKRBE:</strong> {{ instanca.suma_opskrbe }} kn</p>
                     <p><strong>UKUPAN IZNOS MREŽARINE:</strong> {{ instanca.suma_mrezarine }} kn</p>

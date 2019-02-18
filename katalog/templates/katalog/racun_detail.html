@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <p><strong>Broj:</strong> {{ racun.broj }}</p>
                     <p><strong>Datum:</strong> {{ racun.datum }}</p>
-                    <p><strong>Količina:</strong> {{ racun.kolicina }}</p>
+                    <p><strong>Količina/kWh:</strong> {{ racun.kolicina }}</p>
                     <p><strong>Tarifa:</strong> {{ racun.tarifa.naziv }}  ({{ racun.tarifa.mjesec }})</p>
                     <p><strong>UKUPAN IZNOS OPSKRBE:</strong> {{ racun.suma_opskrbe }} kn</p>
 
@@ -34,11 +34,11 @@
             <div class="buttons">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Kontrole Računa</strong>
+                        <strong>Provjera točnosti unosa računa</strong>
                     </div>
                     <div class="card-body">
                         <form action="{% url 'racun-renew-manager' racun.id %}">
-                            <button type="submit" class="btn btn-outline-success btn-block"><i class="fa fa-file-text"></i>&nbsp;Obnovi</button>
+                            <button type="submit" class="btn btn-outline-success btn-block"><i class="fa fa-file-text"></i>&nbsp;Obnovi količinu kWh</button>
                         </form>
     
                         <form action="{% url 'racuni' %}">

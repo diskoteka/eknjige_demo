@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 
-# Create your models here.
+# Create your models here. - dodat poveznicu svjetiljki i OMM
 class Svjetiljka(models.Model):
     oib = models.CharField(max_length=50)
     stup = models.CharField(max_length=5)
@@ -13,6 +13,7 @@ class Svjetiljka(models.Model):
     x_koordinata = models.CharField(max_length=15)
     y_koordinata = models.CharField(max_length=15)
     slika = models.ImageField(default='default.jpg', blank=True)
+    # dodati (tip_stupa, duljina_kraka/konzole, tip_izvora_svjetlosti, )
 
     def __str__(self):
         return f'[{self.oib}]: {self.tip_svjetiljke} ({self.snaga})'
@@ -68,6 +69,7 @@ class Instanca(models.Model):
     stanje_od = models.CharField(max_length=25, null=True)
     stanje_do = models.CharField(max_length=25, null=True)
     mrezarina = models.DecimalField(max_digits=4, decimal_places=2)
+    # dodati naziv i cjenik distributera
 
     class Meta:
         ordering = ['id']
@@ -121,3 +123,18 @@ class Partner(models.Model):
 
     def get_absolute_url(self):
         return reverse('partner-detalji', args=[str(self.id)])
+
+
+class Korisnik(models.Model):
+    naziv = models.CharField(max_length=25, null=True)
+    email = models.EmailField()
+    adresa = models.CharField(max_length=25, null=True)
+
+    def __str__(self):
+        return self.email
+
+    def get_absolute_url(self):
+        return reverse('korisnik-detalji', args=[str(self.id)])
+    
+    def _mail(self):
+        return self.email
