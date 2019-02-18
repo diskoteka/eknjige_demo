@@ -32,6 +32,7 @@ urlpatterns += [
 
 # export - import - delete
 urlpatterns += [
+    path('ojr/exp/', views.ojr_import, name='ojr_imp'),
     path('racuni/exp/', views.racun_export, name='racun_exp'),
     path('racuni/imp/', views.racun_import, name='racun_imp'),
     path('racuni/del/', views.racun_del, name='racun_del'),
@@ -59,6 +60,8 @@ urlpatterns += [
 
 # class based views
 urlpatterns += [
+    path('ojr/', views.OjrListView.as_view(), name='ojr'),
+    path('ojr/<int:pk>', views.OjrDetailView.as_view(), name='ojr-detalji'),
     path('racuni/', views.RacunListView.as_view(), name='racuni'),
     path('racun/<int:pk>', views.RacunDetailView.as_view(), name='racun-detalji'),
     path('instance/', views.InstancaListView.as_view(), name='instance'),
@@ -75,6 +78,9 @@ urlpatterns += [
 
 # crud forms
 urlpatterns += [
+    path('ojr/create/', views.OjrCreate.as_view(), name='ojr_create'),
+    path('ojr/<int:pk>/update/', views.OjrUpdate.as_view(), name='ojr_update'),
+    path('ojr/<int:pk>/delete/', views.OjrDelete.as_view(), name='ojr_delete'),
     path('racun/create/', views.RacunCreate.as_view(), name='racun_create'),
     path('racun/<int:pk>/update/', views.RacunUpdate.as_view(), name='racun_update'),
     path('racun/<int:pk>/delete/', views.RacunDelete.as_view(), name='racun_delete'),

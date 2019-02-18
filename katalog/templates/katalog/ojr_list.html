@@ -1,0 +1,79 @@
+{% extends "base_generic.html" %}
+
+{% block head_css %}
+<!--datatable css-->
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/lib/datatable/dataTables.bootstrap.min.css' %}">
+{% endblock %}
+
+{% block content %}
+<!--table-->
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong class="card-title">Tablica OJR</strong>
+                </div>
+                <div class="card-body">
+                    <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>OIB</th>
+                            <th>Šifra</th>
+                            <th>Broj TS</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for ojr in ojr_list %}
+                        <tr>
+                            <td><a href="{{ ojr.get_absolute_url }}">{{ ojr.ID_elementa }}</a></td>
+                            <td>{{ ojr.OBI_OJR }}</td>
+                            <td>{{ ojr.Šifra_OMM }}</td>
+                            <td>{{ ojr.Broj_trafostanice }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="buttons">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Kontrole OJR</strong>
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'omm_create' %}">
+                            <button type="submit" class="btn btn-outline-success btn-block"><i class="fa fa-bolt"></i>&nbsp;Novo OJR</button>
+                        </form>
+
+                        <form action="{% url 'ojr_imp' %}">
+                            <button type="submit" class="btn btn-outline-secondary btn-block"><i class="fa fa-sign-in"></i>&nbsp;Import .xlsx</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block body_js %}
+<!--datatable js-->
+{% load static %}
+<script src="{% static 'js/lib/data-table/datatables.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/buttons.bootstrap.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/jszip.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/pdfmake.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/vfs_fonts.js' %}"></script>
+<script src="{% static 'js/lib/data-table/buttons.html5.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/buttons.print.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'js/lib/data-table/datatables-init.js' %}"></script>
+{% endblock %}

@@ -138,3 +138,46 @@ class Korisnik(models.Model):
     
     def _mail(self):
         return self.email
+
+
+class OJR(models.Model):
+    ID_elementa = models.IntegerField(primary_key=True)
+    OIB_OJR = models.CharField(max_length=50)
+    Kupac = models.CharField(max_length=50)
+    GRUPA = models.CharField(max_length=2)
+    Adresa_OMM = models.CharField(max_length=50)
+    Broj_trafostanice = models.CharField(max_length=50)
+    Šifra_OMM = models.CharField(max_length=50)
+    Vlasnik_OMM = models.CharField(max_length=50)
+    Naziv_distribucijskog_podrucja = models.CharField(max_length=50)
+    Naziv_pogona = models.CharField(max_length=50)
+    Zakupljena_snaga = models.CharField(max_length=50)
+    Potrošnja_2013 = models.CharField(max_length=25)
+    Potrošnja_2014 = models.CharField(max_length=25)
+    Potrošnja_2015 = models.CharField(max_length=25)
+    Potrošnja_2016 = models.CharField(max_length=25, null=True)
+    Potrošnja_2017 = models.CharField(max_length=25, null=True)
+    Potrošnja_2018 = models.CharField(max_length=25, null=True)
+    Vrsta_sustava_upravljanja = models.CharField(max_length=50)
+    Strujni_krugovi_u_upotrebi = models.CharField(max_length=50)
+    Max_broj_strujnih_krugova = models.CharField(max_length=50)
+    Tip_kablova = models.CharField(max_length=25)
+    Tip_NN_mreze = models.CharField(max_length=25)
+    Uzemljenje = models.CharField(max_length=25)
+    Prenaponska_zaštita = models.CharField(max_length=25)
+    OMM_u_trafostanici = models.CharField(max_length=25)
+    Uklopni_uređaj_funkcionalan = models.CharField(max_length=25)
+    Grupna_regulacija = models.CharField(max_length=25)
+    Faktor_regulacije_K_OMMa = models.CharField(max_length=25)
+    Faktor_regulacije_K_svjetiljki = models.CharField(max_length=25)
+    Provedeno_kontrolno_mjerenje = models.CharField(max_length=25)
+    Napomena = models.CharField(max_length=25)
+    x_koordinata = models.CharField(max_length=25)
+    y_koordinata = models.CharField(max_length=25)
+    ID_elementa_EP = models.CharField(max_length=25)
+    
+    def __str__(self):
+        return self.ID_elementa
+
+    def get_absolute_url(self):
+        return reverse('OJR-detalji', args=[str(self.ID_elementa)])

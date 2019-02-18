@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<!-- dodati tarifni model -->
+<!--details-->
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>ID OJR: {{ ojr.ID_elementa }}</h4>
+                </div>
+
+                <div class="card-body">
+                    <p><strong>Šifra obračunskog mjesta:</strong> {{ ojr.Šifra_OMM }}</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <a href="{% url 'ojr' %}">Idi na tablicu</a>
+</div>
+
+{% endblock %}

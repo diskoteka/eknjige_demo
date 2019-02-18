@@ -1,5 +1,5 @@
 from import_export import resources
-from .models import Svjetiljka, Omm, Racun, Instanca
+from .models import Svjetiljka, Omm, Racun, Instanca, OJR
 
 
 class SvjetiljkaResource(resources.ModelResource):
@@ -20,3 +20,8 @@ class RacunResource(resources.ModelResource):
 class InstancaResource(resources.ModelResource):
     class Meta:
         model = Instanca
+
+
+class OJRResource(resources.ModelResource):
+    class Meta:
+        model = OJR

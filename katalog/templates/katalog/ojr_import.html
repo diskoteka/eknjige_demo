@@ -1,0 +1,16 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="myfile" class="btn btn-outline-success">
+            <br>
+            <br>
+            <button type="submit" class="btn btn-outline-success">Import</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

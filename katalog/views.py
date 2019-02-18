@@ -19,8 +19,8 @@ from rest_framework.response import Response
 
 from tablib import Dataset
 
-from .models import Omm, Racun, Instanca, Tarifa, Partner, Svjetiljka, Korisnik
-from .resources import SvjetiljkaResource, OmmResource, RacunResource, InstancaResource
+from .models import Omm, Racun, Instanca, Tarifa, Partner, Svjetiljka, Korisnik, OJR
+from .resources import SvjetiljkaResource, OmmResource, RacunResource, InstancaResource, OJRResource
 from .forms import RenewRacunForm, ImageUploadForm
 
 from django.core.mail import send_mail
@@ -231,6 +231,21 @@ class InstanceChartData(APIView):
 
 
 # import - export - delete views
+def ojr_import(request):
+    if request.method == 'POST':
+        OJR_resource = OJRResource()
+        dataset = Dataset()
+        nova_OJR = request.FILES['myfile']
+
+        imported_data = dataset.load(nova_OJR.read())
+        result = OJR_resource.import_data(dataset, dry_run=True)
+
+        if not result.has_errors():
+            OJR_resource.import_data(dataset, dry_run=False)
+
+    return render(request, 'katalog/OJR_import.html')
+
+
 def instanca_import(request):
     if request.method == 'POST':
         instanca_resource = InstancaResource()
@@ -425,6 +440,14 @@ def scada(request):
 
 
 # generic view models
+class OjrListView(generic.ListView):
+    model = OJR
+
+
+class OjrDetailView(generic.DetailView):
+    model = OJR
+
+
 class RacunListView(generic.ListView):
     model = Racun
 
@@ -474,6 +497,21 @@ class SvjetiljkaDetailView(generic.DetailView):
 
 
 # crud view models
+class OjrCreate(CreateView):
+    model = OJR
+    fields = '__all__'
+
+
+class OjrUpdate(UpdateView):
+    model = OJR
+    fields = '__all__'
+
+
+class OjrDelete(DeleteView):
+    model = OJR
+    fields = '__all__'
+
+
 class RacunCreate(CreateView):
     model = Racun
     fields = '__all__'
